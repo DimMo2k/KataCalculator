@@ -10,13 +10,17 @@ public class Main {
 
 
 
-
-    public static void main(String[] args) throws InvalidInputException{
+    public static void main(String[] args) throws InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите выражение");
         String userKey = scanner.nextLine();    // Вводим данные в консоль
 
-        char[] userKeyArr = userKey.toCharArray();  // Переводим введенную строку в массив char
+        calc(userKey);
+    }
+
+    public static String calc(String input) throws InvalidInputException {
+        char[] userKeyArr = input.toCharArray();  // Переводим введенную строку в массив char
 
         for (char charTest : userKeyArr ){  // Ищем математический символ
             switch (charTest){
@@ -37,9 +41,9 @@ public class Main {
 
 
 
-            num11 = userKey.substring(0, userKey.indexOf(operation));   // Отделяем часть строки от начала, до найденного оператора
+            num11 = input.substring(0, input.indexOf(operation));   // Отделяем часть строки от начала, до найденного оператора
             num11 = num11.trim();   //  Убираем пробелы, если они есть
-            num22 = userKey.substring(userKey.indexOf(operation) + 1, userKeyArr.length);   // Вторая часть строки, от оператора и до конца
+            num22 = input.substring(input.indexOf(operation) + 1, userKeyArr.length);   // Вторая часть строки, от оператора и до конца
             num22 = num22.trim();   //  Убираем пробелы, если они есть
 
         try {
@@ -69,7 +73,7 @@ public class Main {
         else if((num1Check == false && num2Check == false)) {   // Если оба числа false, числа римские
             Rome romeResult = new Rome(num11, num22, operation);    // Получем результат методом из класса Rome
         }
-
+        return input;
     }
 
 }
